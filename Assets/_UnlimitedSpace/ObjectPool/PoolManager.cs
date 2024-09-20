@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager<T> where T : MonoBehaviour
+public class PoolManager<T> where T : IObject
 {
-    private Action<T> _takeAction;
-    
+    private Action<IObject> _takeAction;
+
     private CustomPool<T> _pool;
     private ObjectsFactory<T> _objectsFactory;
 
-    public PoolManager(int poolSize, Action<T> takeAction)
+    public PoolManager(Spawner spawner, int poolSize, Action<IObject> takeAction)
     {
         if (poolSize < 0)
         {
@@ -21,31 +21,22 @@ public class PoolManager<T> where T : MonoBehaviour
         _takeAction = takeAction;
 
         _pool = new CustomPool<T>(poolSize);
-        _objectsFactory = new ObjectsFactory<T>();
+        _objectsFactory = new ObjectsFactory<T>(spawner);
 
         FillPool();
     }
 
     public void Take()
     {
-        T takedPoolObject = null;
-
         foreach (var poolObject in _pool.PoolObjects)
         {
-            if (poolObject.enabled == false)
+            if (poolObject.GameObject.activeInHierarchy == false)
             {
-                takedPoolObject = poolObject;
+                _takeAction.Invoke(poolObject);
 
-                break;
+                return;
             }
         }
-
-        if (takedPoolObject == null)
-        {
-            return;
-        }
-
-        _takeAction.Invoke(takedPoolObject);
     }
 
     private void FillPool()
@@ -56,9 +47,9 @@ public class PoolManager<T> where T : MonoBehaviour
 
         foreach (var obj in objects)
         {
-            obj.transform.position = Vector3.zero;
-            obj.transform.rotation = Quaternion.identity;
-            obj.gameObject.SetActive(false);
+            obj.GameObject.transform.position = Vector3.zero;
+            obj.GameObject.transform.rotation = Quaternion.identity;
+            obj.GameObject.SetActive(false);
         }
 
         _pool.SetPoolObjects(objects);

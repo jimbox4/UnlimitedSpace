@@ -6,12 +6,16 @@ public class Spawner : MonoBehaviour
 
     private PoolManager<AsteroidView> _asteroidsPool;
     private int _asteroidsPoolSize = 10;
-
     private float _spawnDistance = 500f;
+
+    public IObject InstantiatePrefab(IObject prefab)
+    {
+        return Instantiate(_asteroidPrefab.gameObject).GetComponent<IObject>();
+    }
 
     private void Start()
     {
-        _asteroidsPool = new PoolManager<AsteroidView>(_asteroidsPoolSize, TakeAsteroid);
+        _asteroidsPool = new PoolManager<AsteroidView>(this, _asteroidsPoolSize, TakeAsteroid);
     }
 
     private void FixedUpdate()
@@ -19,7 +23,7 @@ public class Spawner : MonoBehaviour
         _asteroidsPool.Take();
     }
 
-    private void TakeAsteroid(AsteroidView asteroidView)
+    private void TakeAsteroid(IObject asteroidView)
     {
         Vector3 normalizedPosition = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)).normalized;
         Vector3 position = normalizedPosition * _spawnDistance;
@@ -28,6 +32,6 @@ public class Spawner : MonoBehaviour
         Vector3 scale = Vector3.one * scaleValue;
 
         asteroidView.Activate(position, scale);
-        asteroidView.gameObject.SetActive(true);
+        asteroidView.GameObject.SetActive(true);
     }
 }

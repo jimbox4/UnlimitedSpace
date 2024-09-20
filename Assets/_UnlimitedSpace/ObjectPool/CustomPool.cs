@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomPool<T> where T : MonoBehaviour
+public class CustomPool<T> where T : IObject
 {
     private int _poolSize;
 

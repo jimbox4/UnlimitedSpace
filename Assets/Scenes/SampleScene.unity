@@ -2378,7 +2378,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: AsteroidRemaster
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5766261121872934099, guid: c9a819a5406dd2743b3568410fe46030, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

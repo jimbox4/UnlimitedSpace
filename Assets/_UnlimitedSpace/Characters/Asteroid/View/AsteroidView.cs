@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class AsteroidView : MonoBehaviour
+public class AsteroidView : MonoBehaviour, IObject
 {
     private AsteroidMovement _asteriodMovement;
     private DiContainer _diContainer;
@@ -10,14 +10,11 @@ public class AsteroidView : MonoBehaviour
     private float _minSpeed = 20f;
     private float _maxSpeed = 60f;
 
-    [Inject]
-    public void Construct(DiContainer diContainer)
+    public GameObject GameObject => gameObject;
+
+    public void Initialize(DiContainer diContainer, Vector3 position, Transform target, Vector3 scale)
     {
         _diContainer = diContainer;
-    }
-
-    public void Initialize(Vector3 position, Transform target, Vector3 scale)
-    {
         _asteriodMovement = _diContainer.Resolve<AsteroidMovement>();
         _asteriodMovement.Initialize(_diContainer, transform, target);
 
