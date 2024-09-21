@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0020078176, g: 0.0024150128, b: 0.0034362415, a: 1}
+  m_IndirectSpecularColor: {r: 0.0020081021, g: 0.0024153152, b: 0.0034366606, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 245630747}
   - component: {fileID: 245630749}
   - component: {fileID: 245630750}
+  - component: {fileID: 245630751}
   m_Layer: 0
   m_Name: GameScene
   m_TagString: Untagged
@@ -327,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 245630751}
   - {fileID: 245630745}
   - {fileID: 245630748}
   - {fileID: 245630747}
@@ -425,6 +427,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _starshipModelView: {fileID: 1578862555}
+--- !u!114 &245630751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245630742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03cf3127ba353047bd62cca24d0a67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AsteroidView: {fileID: 5766261121872934099, guid: c9a819a5406dd2743b3568410fe46030,
+    type: 3}
 --- !u!1 &256517129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,8 +1103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc206e716266a14ca587550a5783a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _asteroidPrefab: {fileID: 5766261121872934099, guid: c9a819a5406dd2743b3568410fe46030,
-    type: 3}
 --- !u!1 &1305678491
 GameObject:
   m_ObjectHideFlags: 0

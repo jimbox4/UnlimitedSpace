@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class AsteroidView : MonoBehaviour, IObject
+public class AsteroidView : MonoBehaviour
 {
     private AsteroidMovement _asteriodMovement;
     private DiContainer _diContainer;
@@ -15,8 +15,8 @@ public class AsteroidView : MonoBehaviour, IObject
     public void Initialize(DiContainer diContainer, Vector3 position, Transform target, Vector3 scale)
     {
         _diContainer = diContainer;
-        _asteriodMovement = _diContainer.Resolve<AsteroidMovement>();
-        _asteriodMovement.Initialize(_diContainer, transform, target);
+        //_asteriodMovement = _diContainer.Resolve<AsteroidMovement>();
+       // _asteriodMovement.Initialize(_diContainer, transform, target);
 
         transform.position = position;
         transform.rotation = Quaternion.identity;
@@ -29,7 +29,7 @@ public class AsteroidView : MonoBehaviour, IObject
         transform.localScale = scale;
 
         _speed = Random.Range(_minSpeed, _maxSpeed);
-        _asteriodMovement.SetSpeed(_speed);
-        _asteriodMovement.UpdateRotation();
+       // _asteriodMovement.SetSpeed(_speed);
+       // _asteriodMovement.UpdateRotation();
     }
 }

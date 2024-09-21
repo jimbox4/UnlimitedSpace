@@ -1,37 +1,47 @@
+using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private AsteroidView _asteroidPrefab;
-
-    private PoolManager<AsteroidView> _asteroidsPool;
+    [Inject]
+    private IGenericFactory factory;
+    
+    [Inject]
+    private DiContainer container;
+    
     private int _asteroidsPoolSize = 10;
     private float _spawnDistance = 500f;
 
-    public IObject InstantiatePrefab(IObject prefab)
-    {
-        return Instantiate(_asteroidPrefab.gameObject).GetComponent<IObject>();
-    }
-
     private void Start()
     {
-        _asteroidsPool = new PoolManager<AsteroidView>(this, _asteroidsPoolSize, TakeAsteroid);
+        for (int i = 0; i < _asteroidsPoolSize; i++)
+        {
+            Spawn();
+        }
     }
 
-    private void FixedUpdate()
+    private void Spawn()
     {
-        _asteroidsPool.Take();
-    }
-
-    private void TakeAsteroid(IObject asteroidView)
-    {
+        AsteroidView asteroidView = factory.GetAsNew<AsteroidView>();
         Vector3 normalizedPosition = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)).normalized;
         Vector3 position = normalizedPosition * _spawnDistance;
 
         float scaleValue = Random.Range(1f, 4f);
         Vector3 scale = Vector3.one * scaleValue;
+        
+        Debug.LogError(position);
+        //asteroidView.transform.position = position;
 
-        asteroidView.Activate(position, scale);
+        StartCoroutine(Kek(asteroidView, position));
+        //asteroidView.Initialize(container, position, transform, scale);
+        //asteroidView.Activate(position, scale);
         asteroidView.GameObject.SetActive(true);
+    }
+
+    private IEnumerator Kek(AsteroidView view, Vector3 position)
+    {
+        yield return new WaitForSeconds(1f);
+        view.transform.position = position;
     }
 }
