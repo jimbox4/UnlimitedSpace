@@ -434,8 +434,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3767127658450343581}
   - component: {fileID: 986693464152279268}
-  - component: {fileID: 5766261121872934099}
   - component: {fileID: 9067198940122555923}
+  - component: {fileID: 5860781764189917754}
   m_Layer: 0
   m_Name: AsteroidRemaster
   m_TagString: Untagged
@@ -484,18 +484,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5766261121872934099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6756576288343405130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d47b2012f8c33f54886096e02d7d69bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &9067198940122555923
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -523,6 +511,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &5860781764189917754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756576288343405130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47b2012f8c33f54886096e02d7d69bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7536663058462697479
 GameObject:
   m_ObjectHideFlags: 0
