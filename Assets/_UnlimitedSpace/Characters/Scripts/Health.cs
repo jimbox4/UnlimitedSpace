@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class Health
 {
@@ -15,16 +16,18 @@ public class Health
         _minValue = minValue;
     }
 
-    public void DecreaseValue(int value)
+    public bool TryDecreaseValue(int value)
     {
+        if (value <= 0)
+        {
+            return false;
+        }
+
         _currentValue -= value;
 
-        if (value < _minValue)
-        {
-            value = _minValue;
+        Mathf.Clamp(_currentValue, _minValue, _maxValue);
 
-            throw new ArgumentException($"Parameter cannot be bellow {_minValue}", nameof(value));
-        }
+        return true;
     }
 
     public void IncreaseValue(int value)
@@ -37,5 +40,10 @@ public class Health
 
             throw new ArgumentException($"Parameter cannot be greater {_maxValue}", nameof(value));
         }
+    }
+
+    public void SetValueToMax()
+    {
+        _currentValue = _maxValue;
     }
 }

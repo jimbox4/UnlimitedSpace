@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _asteroidsPool.Take();
+        //_asteroidsPool.Take();
     }
 
     private void TakeAsteroid(IObject asteroidView)

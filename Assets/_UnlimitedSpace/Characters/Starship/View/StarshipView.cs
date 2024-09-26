@@ -9,6 +9,8 @@ public class StarshipView : Character
 
     private DiContainer _diContainer;
 
+    private int _maxHealth = 3;
+
     [Inject]
     public void Construct(StarshipMovement starshipMovement, DiContainer diContainer)
     {
@@ -18,6 +20,7 @@ public class StarshipView : Character
 
     public void Initialize()
     {
+        base.Initialize(_maxHealth, _maxHealth);
         StarshipMovement.Intitalize(transform, _diContainer);
     }
 }
